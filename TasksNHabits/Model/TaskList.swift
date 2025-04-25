@@ -54,6 +54,7 @@ class TaskList: ObservableObject {
     }
     
     func deleteTask(id: UUID) {
+        objectWillChange.send()
         tasks.removeAll(where: { $0.id == id })
     }
 }
