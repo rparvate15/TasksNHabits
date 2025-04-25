@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var taskList: TaskList
-    @State private var isAddingTask = false
+    @EnvironmentObject var habitList: HabitList
     
-    @State private var habits: [Habit] = []
-    @State public var HabitList: [Habit] = []
+    @State private var isAddingTask = false
+    @State private var isAddingHabit = false
     
     var body: some View {
         VStack {
@@ -137,16 +137,23 @@ struct ContentView: View {
                     Text("Habits")
                         .font(.title)
                         .padding()
+                    
                     Spacer()
-                    Button("", systemImage:"plus.circle") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                    
+                    Button(action: {
+                        isAddingTask = true
+                    }) {
+                        Image(systemName:"plus.circle")
+                            .font(.title)
                     }
-                    .foregroundStyle(.purple)
-                    .font(.title2)
+                    .padding()
+                    .sheet(isPresented: $isAddingTask) {
+                        AddTaskView().environmentObject(taskList)
+                    }
                 }
                 
                 // Display list of Habits
-                if (habits.isEmpty) {
+                if (habitList.habits.isEmpty) {
                     Spacer()
                     Text("No habits!")
                         .font(.headline)
@@ -158,7 +165,7 @@ struct ContentView: View {
                 }
                 else {
                     List {
-                        ForEach(habits, id: \.name) { eachHabit in
+                        ForEach(habitList.habits, id: \.name) { eachHabit in
                             Text(eachHabit.name)
                         }
                     }
@@ -174,4 +181,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(TaskList())
+        .environmentObject(HabitList())
 }
