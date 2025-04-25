@@ -19,4 +19,14 @@ public struct Habit: Identifiable, Codable {
     var totalAmount: Int
     var currentAmount: Int
     private var isCompleted: Bool = false
+    
+    init(id: UUID = UUID(), name: String, description: String, frequency: Frequency, totalAmount: Int, currentAmount: Int, isCompleted: Bool) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.frequency = frequency
+        self.totalAmount = totalAmount
+        self.currentAmount = currentAmount
+        self.isCompleted = isCompleted
+    }
 }
