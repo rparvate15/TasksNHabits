@@ -21,7 +21,6 @@ struct ContentView: View {
             VStack {
                 Image(systemName: "checkmark.arrow.trianglehead.counterclockwise")
                     .font(.title.weight(.bold))
-                    .background(Color.white.opacity(0.2))
                     .foregroundStyle(.purple)
                 Text("TasksNHabits")
                     .font(.largeTitle)
@@ -141,14 +140,14 @@ struct ContentView: View {
                     Spacer()
                     
                     Button(action: {
-                        isAddingTask = true
+                        isAddingHabit = true
                     }) {
                         Image(systemName:"plus.circle")
                             .font(.title)
                     }
                     .padding()
-                    .sheet(isPresented: $isAddingTask) {
-                        AddTaskView().environmentObject(taskList)
+                    .sheet(isPresented: $isAddingHabit) {
+                        AddHabitView().environmentObject(habitList)
                     }
                 }
                 
