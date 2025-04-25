@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Frequency {
+public enum Frequency: String, Codable {
     case daily
     case weekly
     case monthly

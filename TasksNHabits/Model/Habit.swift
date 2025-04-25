@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 import SwiftUICore
 
-public struct Habit {
-    public let id = UUID()
+public struct Habit: Identifiable, Codable {
+    public var id = UUID()
     public var name: String
     var description: String
     var frequency: Frequency

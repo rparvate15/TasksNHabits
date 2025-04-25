@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct TasksNHabitsApp: App {
     @StateObject var taskList = TaskList()
+    @StateObject var habitList = HabitList()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ContentView()
                     .environmentObject(taskList)
+                    .environmentObject(habitList)
             }
         }
     }
