@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import SwiftUICore
 
-public struct Task: Identifiable {
-    public let id = UUID()
+public struct Task: Identifiable, Codable {
+    public var id = UUID()
     public var name: String
     var description: String
     var completeDate: Date = Date(timeIntervalSinceNow: 0)
