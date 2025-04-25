@@ -67,20 +67,30 @@ struct ContentView: View {
                     ForEach(taskList.tasks.sorted(by: { ($0.isCompleted ? 1 : 0, $0.completeDate) < ($1.isCompleted ? 1 : 0, $1.completeDate) }), id: \.id) { task in
                         NavigationLink(destination: TaskDetailsView(task: task)) {
                             HStack {
-                                Text(task.name)
-                                    .padding(.horizontal)
-                                    .font(.subheadline)
+//                              Checks if this task is overdue
+//                                This is when the task is overdue
                                 if (task.completeDate.timeIntervalSinceNow < 0) {
+                                    Text(task.name)
+                                        .padding(.horizontal)
+                                        .padding(.trailing)
+                                        .font(.subheadline)
+                                        .foregroundStyle(Color.red)
                                     Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
                                         .font(.caption)
                                         .foregroundStyle(Color.red)
                                         .opacity(0.7)
                                 }
+//                                When task is not overdue
                                 else {
+                                    Text(task.name)
+                                        .padding(.horizontal)
+                                        .padding(.trailing)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.purple)
                                     Text(task.timeUntil())
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
-                                        .opacity(0.7)
+                                        .opacity(0.8)
                                     Text(" | ")
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
@@ -88,7 +98,7 @@ struct ContentView: View {
                                     Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
-                                        .opacity(0.7)
+                                        .opacity(0.8)
                                 }
                                 Spacer()
                                 
