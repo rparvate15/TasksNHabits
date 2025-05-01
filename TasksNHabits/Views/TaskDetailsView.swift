@@ -35,11 +35,11 @@ struct TaskDetailsView: View {
             
             VStack {
                 Text(task.timeToString())
-                    .font(.callout)
+                    .font(.title2)
                     .foregroundStyle(.purple)
-                    .padding(.top, 25)
+                    .padding(.top, 50)
                 Text(task.dateToString())
-                    .font(.callout)
+                    .font(.title2)
                     .foregroundStyle(.purple)
             }
             

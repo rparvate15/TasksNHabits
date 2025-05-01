@@ -72,17 +72,11 @@ public struct Task: Identifiable, Codable {
     }
     
     func dateToString() -> String {
-        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm E, MMM dd, yyyy"
-        dateFormatter.dateStyle = .medium
-        return dateFormatter.string(from: completeDate)
+        return completeDate.formatted(date: .long, time: .omitted)
     }
     
     func timeToString() -> String {
-        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.timeStyle = .medium
-        return dateFormatter.string(from: completeDate)
+        return completeDate.formatted(date: .omitted, time: .shortened)
     }
 }
 
