@@ -23,7 +23,7 @@ struct TaskListView: View {
                         Spacer() // Pushes content to trailing edge
                         
                         // Time information and button group
-                        HStack(spacing: 4) {
+                        HStack() {
                             if task.completeDate.timeIntervalSinceNow < 0 {
                                 Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
                                     .font(.caption)
@@ -50,7 +50,6 @@ struct TaskListView: View {
                         .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : .secondary)
                     }
                     .padding(.vertical, 8)
-                    .padding(.leading, 8)
                 }
                 .swipeActions {
                     Button(role: .destructive) {
