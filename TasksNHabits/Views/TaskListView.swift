@@ -18,7 +18,7 @@ struct TaskListView: View {
                         // Task name
                         Text(task.name)
                             .font(.subheadline)
-                            .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : .purple)
+                            .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : (task.isCompleted ? .secondary : .purple))
                         
                         Spacer() // Pushes content to trailing edge
                         
@@ -30,32 +30,34 @@ struct TaskListView: View {
                                     .foregroundColor(.red)
                             } else {
                                 Text(task.timeUntil())
+                                    .font(.caption)
+                                    .opacity(0.5)
                                 Text("|")
+                                    .font(.caption)
+                                    .opacity(0.5)
                                 Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
+                                    .font(.caption)
+                                    .opacity(0.5)
                             }
                             
                             // Checkmark button
-                            Button {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                                    taskList.toggleTaskCompletion(id: task.id)
+                            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(task.isCompleted ? .purple : .gray)
+                                .onTapGesture {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                        taskList.toggleTaskCompletion(id: task.id)
+                                    }
                                 }
-                            } label: {
-                                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(task.isCompleted ? .purple : .gray)
-                            }
                         }
-                        .font(.caption)
-                        .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : .secondary)
                     }
-                    .padding(.vertical, 8)
-                }
-                .swipeActions {
-                    Button(role: .destructive) {
-                        taskList.deleteTask(id: task.id)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            taskList.deleteTask(id: task.id)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
                     }
                 }
             }
