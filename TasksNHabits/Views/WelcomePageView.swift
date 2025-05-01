@@ -33,7 +33,7 @@ struct WelcomePageView: View {
         .padding(.bottom, 70)
         
         
-        
+        // TODO: Fix this for Welcome Splash Screen
         Button("Continue") {
             alreadyViewed = true
         }
