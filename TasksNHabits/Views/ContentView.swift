@@ -68,59 +68,49 @@ struct ContentView: View {
                         ForEach(taskList.tasks.sorted(by: { ($0.isCompleted ? 1 : 0, $0.completeDate) < ($1.isCompleted ? 1 : 0, $1.completeDate) }), id: \.id) { task in
                             NavigationLink(destination: TaskDetailsView(task: task)) {
                                 HStack {
-                                    // Checks if this task is overdue
-                                    // This is when the task is overdue
-                                    if (task.completeDate.timeIntervalSinceNow < 0) {
-                                        Text(task.name)
-                                            .padding(.horizontal)
-                                            .padding(.trailing)
-                                            .font(.subheadline)
-                                            .foregroundStyle(Color.red)
-                                        Spacer()
-                                        Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
-                                            .font(.caption)
-                                            .foregroundStyle(Color.red)
-                                    }
-                                    // When task is not overdue
-                                    else {
-                                        Text(task.name)
-                                            .padding(.horizontal)
-                                            .padding(.trailing)
-                                            .font(.subheadline)
-                                            .foregroundStyle(.purple)
-                                        Spacer()
-                                        Text(task.timeUntil())
-                                            .font(.caption)
-                                            .foregroundStyle(.primary)
-                                        Text(" | ")
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                        Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
-                                            .font(.caption)
-                                            .foregroundStyle(.primary)
-                                    }
-                                    Spacer()
+                                    // Task name
+                                    Text(task.name)
+                                        .font(.subheadline)
+                                        .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : .purple)
                                     
-                                    Button(action: {
-                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                                            taskList.toggleTaskCompletion(id: task.id)
+                                    Spacer() // Pushes content to trailing edge
+                                    
+                                    // Time information and button group
+                                    HStack(spacing: 4) {
+                                        if task.completeDate.timeIntervalSinceNow < 0 {
+                                            Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
+                                                .font(.caption)
+                                                .foregroundColor(.red)
+                                        } else {
+                                            Text(task.timeUntil())
+                                            Text("|")
+                                            Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
                                         }
-                                    }) {
-                                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                                            .resizable()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundStyle(task.isCompleted ? .purple : .gray)
-                                            .padding(.horizontal)
+                                            .padding()
+                                        
+                                        // Checkmark button
+                                        Button {
+                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                                taskList.toggleTaskCompletion(id: task.id)
+                                            }
+                                        } label: {
+                                            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                                .resizable()
+                                                .frame(width: 24, height: 24)
+                                                .foregroundColor(task.isCompleted ? .purple : .gray)
+                                        }
                                     }
+                                    .font(.caption)
+                                    .foregroundColor(task.completeDate.timeIntervalSinceNow < 0 ? .red : .secondary)
                                 }
-                                .swipeActions {
-                                    Button(role: .destructive) {
-                                        taskList.deleteTask(id: task.id)
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
-                                    }
+                                .padding(.vertical, 8)
+                            }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    taskList.deleteTask(id: task.id)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
                                 }
-                                .transition(.move(edge: .leading))
                             }
                         }
                     }
