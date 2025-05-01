@@ -63,70 +63,71 @@ struct ContentView: View {
                         .foregroundStyle(.secondary)
                 }
                 else {
-                    ForEach(taskList.tasks.sorted(by: { ($0.isCompleted ? 1 : 0, $0.completeDate) < ($1.isCompleted ? 1 : 0, $1.completeDate) }), id: \.id) { task in
-                        NavigationLink(destination: TaskDetailsView(task: task)) {
-                            HStack {
-//                              Checks if this task is overdue
-//                                This is when the task is overdue
-                                if (task.completeDate.timeIntervalSinceNow < 0) {
-                                    Text(task.name)
-                                        .padding(.horizontal)
-                                        .padding(.trailing)
-                                        .font(.subheadline)
-                                        .foregroundStyle(Color.red)
-                                    Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
-                                        .font(.caption)
-                                        .foregroundStyle(Color.red)
-                                        .opacity(0.7)
-                                }
-//                                When task is not overdue
-                                else {
-                                    Text(task.name)
-                                        .padding(.horizontal)
-                                        .padding(.trailing)
-                                        .font(.subheadline)
-                                        .foregroundStyle(.purple)
-                                    Text(task.timeUntil())
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                        .opacity(0.8)
-                                    Text(" | ")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                        .opacity(0.7)
-                                    Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                        .opacity(0.8)
-                                }
-                                Spacer()
-                                
-                                Button(action: {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                                        taskList.toggleTaskCompletion(id: task.id)
+                    
+                    List {
+                        ForEach(taskList.tasks.sorted(by: { ($0.isCompleted ? 1 : 0, $0.completeDate) < ($1.isCompleted ? 1 : 0, $1.completeDate) }), id: \.id) { task in
+                            NavigationLink(destination: TaskDetailsView(task: task)) {
+                                HStack {
+                                    // Checks if this task is overdue
+                                    // This is when the task is overdue
+                                    if (task.completeDate.timeIntervalSinceNow < 0) {
+                                        Text(task.name)
+                                            .padding(.horizontal)
+                                            .padding(.trailing)
+                                            .font(.subheadline)
+                                            .foregroundStyle(Color.red)
+                                        Spacer()
+                                        Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
+                                            .font(.caption)
+                                            .foregroundStyle(Color.red)
                                     }
-                                }) {
-                                    Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                                        .resizable()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundStyle(task.isCompleted ? .purple : .secondary)
-                                        .padding(.horizontal)
+                                    // When task is not overdue
+                                    else {
+                                        Text(task.name)
+                                            .padding(.horizontal)
+                                            .padding(.trailing)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.purple)
+                                        Spacer()
+                                        Text(task.timeUntil())
+                                            .font(.caption)
+                                            .foregroundStyle(.primary)
+                                        Text(" | ")
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                        Text(task.completeDate.formatted(date: .abbreviated, time: .shortened))
+                                            .font(.caption)
+                                            .foregroundStyle(.primary)
+                                    }
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                            taskList.toggleTaskCompletion(id: task.id)
+                                        }
+                                    }) {
+                                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                            .foregroundStyle(task.isCompleted ? .purple : .gray)
+                                            .padding(.horizontal)
+                                    }
                                 }
-                            }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    taskList.deleteTask(id: task.id)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        taskList.deleteTask(id: task.id)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
+                                .transition(.move(edge: .leading))
                             }
-                            .transition(.move(edge: .leading))
                         }
                     }
+                    .listStyle(.plain)
                 }
                 Spacer()
             }
-            .padding(.bottom, 25)
             
             
             
