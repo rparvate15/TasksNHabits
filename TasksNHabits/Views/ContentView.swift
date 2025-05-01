@@ -15,103 +15,105 @@ struct ContentView: View {
     @State private var isAddingHabit = false
     
     var body: some View {
-        VStack {
-            
-            // Title Island
+        NavigationStack {
             VStack {
-                Image(systemName: "checkmark.arrow.trianglehead.counterclockwise")
-                    .font(.title.weight(.bold))
-                    .foregroundStyle(.purple)
-                Text("TasksNHabits")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.purple)
-            }
-            .padding(.top, 25)
-            .padding(.bottom, 25)
-            
-            // Tasks Island
-            VStack {
-                HStack {
-                    Text("Tasks")
-                        .font(.title)
-                        .multilineTextAlignment(.leading)
-                        .padding()
-                    Spacer()
-                    
-                    Button(action: {
-                        isAddingTask = true
-                    }) {
-                        Image(systemName:"plus.circle")
-                            .font(.title)
-                    }
-                    .padding()
-                    .sheet(isPresented: $isAddingTask) {
-                        AddTaskView().environmentObject(taskList)
-                    }
-                    
-                }
                 
-                // Display list of Tasks
-                if (taskList.tasks.isEmpty) {
-                    Spacer()
-                    Text("No tasks!")
-                        .font(.headline)
-                        .foregroundStyle(Color.purple)
-                    Text("Click the plus button to add a new task")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                // Title Island
+                VStack {
+                    Image(systemName: "checkmark.arrow.trianglehead.counterclockwise")
+                        .font(.title.weight(.bold))
+                        .foregroundStyle(.purple)
+                    Text("TasksNHabits")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.purple)
                 }
-                else {
-                    TaskListView()
-                }
-                Spacer()
-            }
-            
-            
-            
-            // Habits Island
-            VStack {
-                HStack {
-                    Text("Habits")
-                        .font(.title)
-                        .padding()
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        isAddingHabit = true
-                    }) {
-                        Image(systemName:"plus.circle")
-                            .font(.title)
-                    }
-                    .padding()
-                    .sheet(isPresented: $isAddingHabit) {
-                        AddHabitView().environmentObject(habitList)
-                    }
-                }
+                .padding(.top, 25)
+                .padding(.bottom, 25)
                 
-                // Display list of Habits
-                if (habitList.habits.isEmpty) {
-                    Spacer()
-                    Text("No habits!")
-                        .font(.headline)
-                        .foregroundStyle(Color.purple)
-                    Text("Click the plus button to add a new habit")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                // Tasks Island
+                VStack {
+                    HStack {
+                        Text("Tasks")
+                            .font(.title)
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                        Spacer()
                         
+                        Button(action: {
+                            isAddingTask = true
+                        }) {
+                            Image(systemName:"plus.circle")
+                                .font(.title)
+                        }
+                        .padding()
+                        .sheet(isPresented: $isAddingTask) {
+                            AddTaskView().environmentObject(taskList)
+                        }
+                        
+                    }
+                    
+                    // Display list of Tasks
+                    if (taskList.tasks.isEmpty) {
+                        Spacer()
+                        Text("No tasks!")
+                            .font(.headline)
+                            .foregroundStyle(Color.purple)
+                        Text("Click the plus button to add a new task")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    else {
+                        TaskListView()
+                    }
+                    Spacer()
                 }
-                else {
-                    List {
-                        ForEach(habitList.habits, id: \.name) { eachHabit in
-                            Text(eachHabit.name)
+                
+                
+                
+                // Habits Island
+                VStack {
+                    HStack {
+                        Text("Habits")
+                            .font(.title)
+                            .padding()
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isAddingHabit = true
+                        }) {
+                            Image(systemName:"plus.circle")
+                                .font(.title)
+                        }
+                        .padding()
+                        .sheet(isPresented: $isAddingHabit) {
+                            AddHabitView().environmentObject(habitList)
                         }
                     }
+                    
+                    // Display list of Habits
+                    if (habitList.habits.isEmpty) {
+                        Spacer()
+                        Text("No habits!")
+                            .font(.headline)
+                            .foregroundStyle(Color.purple)
+                        Text("Click the plus button to add a new habit")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        
+                    }
+                    else {
+                        List {
+                            ForEach(habitList.habits, id: \.name) { eachHabit in
+                                Text(eachHabit.name)
+                            }
+                        }
+                    }
+                    
+                    Spacer()
+                    
                 }
-                
-                Spacer()
-                
             }
         }
     }
