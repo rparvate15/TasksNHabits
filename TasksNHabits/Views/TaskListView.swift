@@ -59,7 +59,6 @@ struct TaskListView: View {
                             Label("Delete", systemImage: "trash")
                         }
                     }
-                    .listRowBackground(task.isCompleted ? Color.purple.opacity(0.3) : Color.clear)
                 }
             }
         }
