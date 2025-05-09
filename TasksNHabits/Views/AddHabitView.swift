@@ -16,7 +16,6 @@ struct AddHabitView: View {
     @State var frequency: Frequency = .daily
     @State var currentAmount: Int = 0
     @State var totalAmount: Int = 1
-    @State private var isCompleted: Bool = false
 
     
     
@@ -80,7 +79,7 @@ struct AddHabitView: View {
             
             
             Button(action: {
-                let newHabit = Habit(name: name, description: description, frequency: frequency, totalAmount: totalAmount, currentAmount: currentAmount, isCompleted: isCompleted)
+                let newHabit = Habit(name: name, description: description, frequency: frequency, totalAmount: totalAmount, currentAmount: currentAmount)
                 
                 habitList.addHabit(habit: newHabit)
                 presentationMode.wrappedValue.dismiss()
@@ -93,7 +92,7 @@ struct AddHabitView: View {
             
             Spacer()
             
-            Text(Habit(name: name, description: description, frequency: frequency, totalAmount: totalAmount, currentAmount: currentAmount, isCompleted: isCompleted).HabitPreviewString())
+            Text(Habit(name: name, description: description, frequency: frequency, totalAmount: totalAmount, currentAmount: currentAmount).HabitPreviewString())
                 .foregroundStyle(name == "" ? .color : .secondary)
                 .font(.callout)
             Text(currentAmount == 0 ? "" : " (completed \(currentAmount) so far)")
