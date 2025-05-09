@@ -13,7 +13,11 @@ struct HabitListView: View {
     var body: some View {
         List {
             ForEach(habitList.habits, id: \.id) { eachHabit in
-                Text(eachHabit.name)
+                NavigationLink(destination: HabitDetailsView(habit: eachHabit)) {
+                    HStack {
+                        Text(eachHabit.name)
+                    }
+                }
             }
         }
         .listStyle(.plain)
