@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 import SwiftUICore
 
@@ -18,18 +16,16 @@ public struct Habit: Identifiable, Codable {
     var frequency: Frequency
     var totalAmount: Int
     var currentAmount: Int
-    private var isCompleted: Bool = false
     
-    init(id: UUID = UUID(), name: String, description: String, frequency: Frequency, totalAmount: Int, currentAmount: Int, isCompleted: Bool) {
+    init(id: UUID = UUID(), name: String, description: String, frequency: Frequency, totalAmount: Int, currentAmount: Int) {
         self.id = id
         self.name = name
         self.description = description
         self.frequency = frequency
         self.totalAmount = totalAmount
         self.currentAmount = currentAmount
-        self.isCompleted = isCompleted
     }
-    
+
     public func HabitPreviewString() -> String {
         let times = totalAmount == 1 ? "time" : "times"
         
@@ -52,5 +48,329 @@ public struct Habit: Identifiable, Codable {
         }
         
         return name + " " + String(totalAmount) + " " + times + " a " + frequencyString
+    }
+    
+    private func TimeIntervalCalculator() -> (day: TimeInterval, week: TimeInterval, month: TimeInterval, year: TimeInterval) {
+        let calendar = Calendar.current
+        let now = Date()
+        
+        let nextDay = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now))!
+        
+        let nextWeek = calendar.nextDate(after: .now, matching: DateComponents(hour: 0, minute: 0, second: 0, weekday: calendar.firstWeekday), matchingPolicy: .nextTime)!
+        
+        let nextMonth = calendar.date(byAdding: .month, value: 1, to: calendar.startOfDay(for: now))!
+            .startOfMonth(using: calendar)
+        
+        let nextYear = calendar.date(byAdding: .year, value: 1, to: calendar.startOfDay(for: now))!
+        
+        return (
+            day: nextDay.timeIntervalSinceNow,
+            week: nextWeek.timeIntervalSinceNow,
+            month: nextMonth.timeIntervalSinceNow,
+            year: nextYear.timeIntervalSinceNow
+        )
+    }
+    
+    public func TimeUntilDay() -> String {
+        var returnString = ""
+        var hours = 0
+        var minutes = 0
+        var seconds = 0
+        var timeSeconds = TimeIntervalCalculator().day
+        
+        hours = Int(timeSeconds) / 3600
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 3600)
+        minutes = Int(timeSeconds) / 60
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 60)
+        seconds = Int(timeSeconds)
+        
+        if hours > 0 {
+            if hours == 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hour, ")
+            }
+            else if hours == 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hour")
+            }
+            else if hours > 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hours, ")
+            }
+            else if hours > 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + "hours")
+            }
+        }
+        if minutes > 0 {
+            if minutes == 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minute, ")
+            }
+            else if minutes == 1 && seconds == 0 {
+                returnString.append(String(minutes) + " minute")
+            }
+            else if minutes > 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minutes, ")
+            }
+            else if minutes > 1 && seconds == 0 {
+                returnString.append(String(minutes) + "minutes")
+            }
+        }
+        if seconds > 1 {
+            returnString.append(String(seconds) + " seconds")
+        }
+        else if seconds == 1{
+            returnString.append(String(seconds) + " second")
+        }
+        
+    
+        return returnString
+    }
+    
+    public func TimeUntilWeek() -> String {
+        var returnString = ""
+        var days = 0
+        var hours = 0
+        var minutes = 0
+        var seconds = 0
+        var timeSeconds = TimeIntervalCalculator().week
+        
+        days = Int(timeSeconds) / 86400
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 86400)
+        hours = Int(timeSeconds) / 3600
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 3600)
+        minutes = Int(timeSeconds) / 60
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 60)
+        seconds = Int(timeSeconds)
+        
+        if days > 0 {
+            if days == 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "day, ")
+            }
+            else if days == 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "day")
+            }
+            else if days > 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "days, ")
+            }
+            else if days > 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "days")
+            }
+        }
+        if hours > 0 {
+            if hours == 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hour, ")
+            }
+            else if hours == 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hour")
+            }
+            else if hours > 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hours, ")
+            }
+            else if hours > 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + "hours")
+            }
+        }
+        if minutes > 0 {
+            if minutes == 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minute, ")
+            }
+            else if minutes == 1 && seconds == 0 {
+                returnString.append(String(minutes) + " minute")
+            }
+            else if minutes > 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minutes, ")
+            }
+            else if minutes > 1 && seconds == 0 {
+                returnString.append(String(minutes) + "minutes")
+            }
+        }
+        if seconds > 1 {
+            returnString.append(String(seconds) + " seconds")
+        }
+        else if seconds == 1 {
+            returnString.append(String(seconds) + " second")
+        }
+        
+        return returnString
+    }
+    
+    public func TimeUntilMonth() -> String {
+        var returnString = ""
+        var weeks = 0
+        var days = 0
+        var hours = 0
+        var minutes = 0
+        var seconds = 0
+        var timeSeconds = TimeIntervalCalculator().month
+        
+        weeks = Int(timeSeconds) / 604800
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 604800)
+        days = Int(timeSeconds) / 86400
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 86400)
+        hours = Int(timeSeconds) / 3600
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 3600)
+        minutes = Int(timeSeconds) / 60
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 60)
+        seconds = Int(timeSeconds)
+        
+        if weeks > 0 {
+            if weeks == 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(weeks) + "week, ")
+            }
+            else if weeks == 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(weeks) + "week")
+            }
+            else if weeks > 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(weeks) + "weeks, ")
+            }
+            else if weeks > 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(weeks) + "weeks")
+            }
+        }
+        if days > 0 {
+            if days == 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "day, ")
+            }
+            else if days == 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "day")
+            }
+            else if days > 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "days, ")
+            }
+            else if days > 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "days")
+            }
+        }
+        if hours > 0 {
+            if hours == 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hour, ")
+            }
+            else if hours == 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hour")
+            }
+            else if hours > 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hours, ")
+            }
+            else if hours > 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + "hours")
+            }
+        }
+        if minutes > 0 {
+            if minutes == 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minute, ")
+            }
+            else if minutes == 1 && seconds == 0 {
+                returnString.append(String(minutes) + " minute")
+            }
+            else if minutes > 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minutes, ")
+            }
+            else if minutes > 1 && seconds == 0 {
+                returnString.append(String(minutes) + "minutes")
+            }
+        }
+        if seconds > 1 {
+            returnString.append(String(seconds) + " seconds")
+        }
+        else if seconds == 1{
+            returnString.append(String(seconds) + " second")
+        }
+        
+        return returnString
+    }
+    
+    public func TimeUntilYear() -> String {
+        var returnString = ""
+        var weeks = 0
+        var days = 0
+        var hours = 0
+        var minutes = 0
+        var seconds = 0
+        var timeSeconds = TimeIntervalCalculator().year
+        
+        weeks = Int(timeSeconds) / 604800
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 604800)
+        days = Int(timeSeconds) / 86400
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 86400)
+        hours = Int(timeSeconds) / 3600
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 3600)
+        minutes = Int(timeSeconds) / 60
+        timeSeconds = timeSeconds.truncatingRemainder(dividingBy: 60)
+        seconds = Int(timeSeconds)
+        
+        if weeks > 0 {
+            if weeks == 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(weeks) + "week, ")
+            }
+            else if weeks == 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(weeks) + "week")
+            }
+            else if weeks > 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(weeks) + "weeks, ")
+            }
+            else if weeks > 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(weeks) + "weeks")
+            }
+        }
+        if days > 0 {
+            if days == 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "day, ")
+            }
+            else if days == 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "day")
+            }
+            else if days > 1 && (hours != 0 || minutes != 0 || seconds != 0) {
+                returnString.append(String(days) + "days, ")
+            }
+            else if days > 1 && hours == 0 && minutes == 0 && seconds == 0 {
+                returnString.append(String(days) + "days")
+            }
+        }
+        if hours > 0 {
+            if hours == 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hour, ")
+            }
+            else if hours == 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hour")
+            }
+            else if hours > 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hours, ")
+            }
+            else if hours > 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + "hours")
+            }
+        }
+        if minutes > 0 {
+            if minutes == 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minute, ")
+            }
+            else if minutes == 1 && seconds == 0 {
+                returnString.append(String(minutes) + " minute")
+            }
+            else if minutes > 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minutes, ")
+            }
+            else if minutes > 1 && seconds == 0 {
+                returnString.append(String(minutes) + "minutes")
+            }
+        }
+        if seconds > 1 {
+            returnString.append(String(seconds) + " seconds")
+        }
+        else if seconds == 1{
+            returnString.append(String(seconds) + " second")
+        }
+        
+        return returnString
+    }
+    
+    public func TimeUntil() -> String {
+        switch frequency {
+        case .daily:
+            return TimeUntilDay()
+        case .weekly:
+            return TimeUntilWeek()
+        case .monthly:
+            return TimeUntilMonth()
+        case .yearly:
+            return TimeUntilYear()
+        }
     }
 }

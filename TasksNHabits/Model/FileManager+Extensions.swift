@@ -13,3 +13,13 @@ extension FileManager {
         return paths[0]
     }
 }
+
+extension Date {
+    func startOfMonth(using calendar: Calendar = .current) -> Date {
+           calendar.date(from: calendar.dateComponents([.year, .month], from: self))!
+       }
+       
+       func startOfYear(using calendar: Calendar = .current) -> Date {
+           calendar.date(from: calendar.dateComponents([.year], from: self))!
+       }
+}
