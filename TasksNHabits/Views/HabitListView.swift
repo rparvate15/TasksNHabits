@@ -12,7 +12,7 @@ struct HabitListView: View {
     
     var body: some View {
         List {
-            ForEach(habitList.habits, id: \.name) { eachHabit in
+            ForEach(habitList.habits, id: \.id) { eachHabit in
                 Text(eachHabit.name)
             }
         }

@@ -22,7 +22,7 @@ class HabitList: ObservableObject {
     private func saveHabits() {
         do {
             let data = try JSONEncoder().encode(habits)
-            try data.write(to: URL(fileURLWithPath: "habits.json"))
+            try data.write(to: FileManager.documentsDirectory.appendingPathComponent("habits.json"))
         } catch {
             print("Error saving habits: \(error)")
         }
