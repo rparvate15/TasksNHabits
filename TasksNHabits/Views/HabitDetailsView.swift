@@ -23,6 +23,7 @@ struct HabitDetailsView: View {
                 Text(habit.description)
                     .font(.headline)
                     .foregroundStyle(.secondary)
+                    .italic()
             }
             else {
                 Text("Empty description")
@@ -34,18 +35,35 @@ struct HabitDetailsView: View {
             
             
             VStack {
-                Text("SpaceHolder")
+                Text("Total Amount : \(habit.totalAmount)")
                     .font(.title2)
                     .foregroundStyle(.purple)
                     .padding(.top, 50)
-                Text("SpaceHolder")
-                    .font(.title2)
+                    .padding(.bottom, 5)
+                Text("Current Amount : \(habit.currentAmount)")
+                    .font(.title3)
                     .foregroundStyle(.purple)
+                    .opacity(0.8)
             }
             
-            
+            //TODO: Add Plus/Minus buttons
             Spacer()
             
+            if habit.currentAmount == habit.totalAmount {
+                Text("Congratulations! You have completed your habit!")
+                    .font(.headline)
+                    .foregroundStyle(.purple)
+                    .italic()
+            }
+            else {
+                Text("You have \(habit.TimeUntil()) until your habit deadline!")
+                    .padding()
+                    .foregroundStyle(.purple)
+                    .font(.callout)
+                    .bold()
+                    .italic()
+                    .multilineTextAlignment(.center)
+            }
             
             
             Spacer()
@@ -54,5 +72,5 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Test", description: "Test", frequency: .daily, totalAmount: 1, currentAmount: 0, isCompleted: false))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .daily, totalAmount: 1, currentAmount: 0))
 }
