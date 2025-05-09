@@ -104,11 +104,7 @@ struct ContentView: View {
                         
                     }
                     else {
-                        List {
-                            ForEach(habitList.habits, id: \.name) { eachHabit in
-                                Text(eachHabit.name)
-                            }
-                        }
+                        HabitListView()
                     }
                     
                     Spacer()
