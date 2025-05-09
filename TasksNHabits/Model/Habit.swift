@@ -29,4 +29,28 @@ public struct Habit: Identifiable, Codable {
         self.currentAmount = currentAmount
         self.isCompleted = isCompleted
     }
+    
+    public func HabitPreviewString() -> String {
+        let times = totalAmount == 1 ? "time" : "times"
+        
+        var frequencyString : String {
+            if frequency == .daily {
+                return "day"
+            }
+            else if frequency == .weekly {
+                return "week"
+            }
+            else if frequency == .monthly {
+                return "month"
+            }
+            else if frequency == .yearly {
+                return "year"
+            }
+            else {
+                return("Unexpected error: Due to Frequency")
+            }
+        }
+        
+        return name + " " + String(totalAmount) + " " + times + " a " + frequencyString
+    }
 }

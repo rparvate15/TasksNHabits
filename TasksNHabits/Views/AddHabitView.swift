@@ -14,14 +14,15 @@ struct AddHabitView: View {
     @State private var name: String = ""
     @State private var description: String = ""
     @State var frequency: Frequency = .daily
-    @State var totalAmount: Int = 0
     @State var currentAmount: Int = 0
+    @State var totalAmount: Int = 1
     @State private var isCompleted: Bool = false
 
     
     
     var body: some View {
         VStack {
+            Spacer()
             Text("Add New Habit")
                 .font(.title)
                 .foregroundStyle(.purple)
@@ -47,11 +48,35 @@ struct AddHabitView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundStyle(.purple)
             
-//          TODO: Picker for the total amount
+            Stepper(value: $currentAmount, in: 0...totalAmount) {
+                Text("Current Amount (optional)")
+                    .foregroundStyle(currentAmount == 0 ? .secondary : .primary)
+                Text("\(currentAmount)")
+                    .font(currentAmount == 0 ? .caption : .headline)
+            }
+            .padding(.horizontal)
+            .padding(.vertical)
             
-//          TODO: Picker for the current amount (optional)
             
-//          TODO: Enum picker for the frequency
+            Stepper(value: $totalAmount, in: 1...100) {
+                Text("Total Amount")
+                Text("\(totalAmount)")
+                    .font(.headline)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            
+            // TODO: Make option for the M/W/F rather than over time period
+            
+            Picker(selection: $frequency, label: Text("Frequency")) {
+                Text("Daily").tag(Frequency.daily)
+                Text("Weekly").tag(Frequency.weekly)
+                Text("Monthly").tag(Frequency.monthly)
+                Text("Yearly").tag(Frequency.yearly)
+            }
+            .pickerStyle(.palette)
+            .padding(.horizontal)
+            .padding(.bottom, 30)
             
             
             Button(action: {
@@ -65,6 +90,15 @@ struct AddHabitView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(name.isEmpty)
+            
+            Spacer()
+            
+            Text(Habit(name: name, description: description, frequency: frequency, totalAmount: totalAmount, currentAmount: currentAmount, isCompleted: isCompleted).HabitPreviewString())
+                .foregroundStyle(name == "" ? .color : .secondary)
+                .font(.callout)
+            Text(currentAmount == 0 ? "" : " (completed \(currentAmount) so far)")
+                .foregroundStyle(name == "" ? .color : .secondary)
+                .font(.caption)
         }
         .padding(.bottom, 30)
     }
