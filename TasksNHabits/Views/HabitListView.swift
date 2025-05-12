@@ -14,11 +14,19 @@ struct HabitListView: View {
         List {
             ForEach(habitList.habits, id: \.id) { habit in
                 NavigationLink(destination: HabitDetailsView(habit: habit)) {
-                    HStack {
-                        Text(habit.name)
-                        Spacer()
-                        Text("\(habit.currentAmount) / \(habit.totalAmount)")
+                    ZStack {
                         
+                        HStack {
+                            Text(habit.name)
+                                .foregroundStyle(.purple)
+                            Spacer()
+                            Text("\(habit.currentAmount) / \(habit.totalAmount)")
+                                .foregroundStyle(.purple)
+                            Text("\(habit.frequency)")
+                                .font(.callout)
+                                .foregroundStyle(.gray)
+                            
+                        }
                     }
                 }
                 .swipeActions {
