@@ -384,4 +384,6 @@ public struct Habit: Identifiable, Codable {
             return TimeUntilYear()
         }
     }
+    
+    // TODO: Add a function that calculates if a habit is "on track" (takes into account amount over time)
 }
