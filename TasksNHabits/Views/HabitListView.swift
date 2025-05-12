@@ -14,7 +14,6 @@ struct HabitListView: View {
         List {
             ForEach(habitList.habits, id: \.id) { habit in
                 NavigationLink(destination: HabitDetailsView(habit: habit)) {
-                    ZStack {
                         
                         HStack {
                             Text(habit.name)
@@ -22,12 +21,29 @@ struct HabitListView: View {
                             Spacer()
                             Text("\(habit.currentAmount) / \(habit.totalAmount)")
                                 .foregroundStyle(.purple)
+                            
+                            ZStack {
+                                
+                                Circle()
+                                    .stroke(lineWidth: 2)
+                                    .foregroundStyle(.gray)
+                                    .opacity(0.2)
+                                    .fixedSize()
+                                
+                                Circle()
+                                    .trim(from: 0, to: CGFloat(habit.currentAmount) / CGFloat(habit.totalAmount))
+                                    .stroke(lineWidth: 2)
+                                    .foregroundStyle(.purple)
+                                    .fixedSize()
+                                    .rotationEffect(.degrees(-90))
+                                
+                            }
+                            
                             Text("\(habit.frequency)")
                                 .font(.callout)
                                 .foregroundStyle(.gray)
                             
                         }
-                    }
                 }
                 .swipeActions {
                     Button(role: .destructive) {
