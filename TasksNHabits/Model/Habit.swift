@@ -82,7 +82,7 @@ public struct Habit: Identifiable, Codable {
         )
     }
     
-    public func TimeUntilDay() -> String {
+    private func TimeUntilDay() -> String {
         var returnString = ""
         var hours = 0
         var minutes = 0
@@ -134,7 +134,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    public func TimeUntilWeek() -> String {
+    private func TimeUntilWeek() -> String {
         var returnString = ""
         var days = 0
         var hours = 0
@@ -202,7 +202,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    public func TimeUntilMonth() -> String {
+    private func TimeUntilMonth() -> String {
         var returnString = ""
         var weeks = 0
         var days = 0
@@ -287,7 +287,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    public func TimeUntilYear() -> String {
+    private func TimeUntilYear() -> String {
         var returnString = ""
         var weeks = 0
         var days = 0
