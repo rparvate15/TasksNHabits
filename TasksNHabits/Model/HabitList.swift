@@ -50,4 +50,19 @@ class HabitList: ObservableObject {
         habits.removeAll { $0.id == id }
     }
     
+    func incrementHabit(id: UUID) {
+        if let index = habits.firstIndex(where: { $0.id == id }) {
+            var habit = habits[index]
+            habit.currentAmount = min(habit.currentAmount + 1, habit.totalAmount)
+            habits[index] = habit
+        }
+    }
+
+    func decrementHabit(id: UUID) {
+        if let index = habits.firstIndex(where: { $0.id == id }) {
+            var habit = habits[index]
+            habit.currentAmount = max(habit.currentAmount - 1, 0)
+            habits[index] = habit
+        }
+    }
 }

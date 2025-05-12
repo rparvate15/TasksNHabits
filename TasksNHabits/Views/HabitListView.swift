@@ -19,6 +19,27 @@ struct HabitListView: View {
                             Text(habit.name)
                                 .foregroundStyle(.purple)
                             Spacer()
+                            
+                            HStack(spacing: 8) {
+                                Button {
+                                    habitList.incrementHabit(id: habit.id)
+                                } label: {
+                                    Image(systemName: "chevron.up")
+                                }
+                                .disabled(habit.currentAmount >= habit.totalAmount)
+                                
+                                Button {
+                                    habitList.decrementHabit(id: habit.id)
+                                } label: {
+                                    Image(systemName: "chevron.down")
+                                }
+                                .disabled(habit.currentAmount <= 0)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.purple)
+                            
+                            Spacer()
+                            
                             Text("\(habit.currentAmount) / \(habit.totalAmount)")
                                 .foregroundStyle(.purple)
                             
