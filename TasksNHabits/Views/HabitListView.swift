@@ -16,6 +16,9 @@ struct HabitListView: View {
                 NavigationLink(destination: HabitDetailsView(habit: habit)) {
                     HStack {
                         Text(habit.name)
+                        Spacer()
+                        Text("\(habit.currentAmount) / \(habit.totalAmount)")
+                        
                     }
                 }
                 .swipeActions {
