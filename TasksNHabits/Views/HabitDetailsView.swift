@@ -72,5 +72,5 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .daily, totalAmount: 1, currentAmount: 0))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .weekly, totalAmount: 1, currentAmount: 0))
 }
