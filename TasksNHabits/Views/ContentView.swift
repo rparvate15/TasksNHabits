@@ -29,7 +29,6 @@ struct ContentView: View {
                         .foregroundStyle(.purple)
                 }
                 .padding(.top, 25)
-                .padding(.bottom, 25)
                 
                 // Tasks Island
                 VStack {
