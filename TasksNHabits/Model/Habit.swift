@@ -297,30 +297,30 @@ public struct Habit: Identifiable, Codable {
         
         if weeks > 0 {
             if weeks == 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(weeks) + "week, ")
+                returnString.append(String(weeks) + " week, ")
             }
             else if weeks == 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(weeks) + "week")
+                returnString.append(String(weeks) + " week")
             }
             else if weeks > 1 && (days != 0 || hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(weeks) + "weeks, ")
+                returnString.append(String(weeks) + " weeks, ")
             }
             else if weeks > 1 && days == 0 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(weeks) + "weeks")
+                returnString.append(String(weeks) + " weeks")
             }
         }
         if days > 0 {
             if days == 1 && (hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(days) + "day, ")
+                returnString.append(String(days) + " day, ")
             }
             else if days == 1 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(days) + "day")
+                returnString.append(String(days) + " day")
             }
             else if days > 1 && (hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(days) + "days, ")
+                returnString.append(String(days) + " days, ")
             }
             else if days > 1 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(days) + "days")
+                returnString.append(String(days) + " days")
             }
         }
         if hours > 0 {
@@ -334,7 +334,7 @@ public struct Habit: Identifiable, Codable {
                 returnString.append(String(hours) + " hours, ")
             }
             else if hours > 1 && minutes == 0 && seconds == 0 {
-                returnString.append(String(hours) + "hours")
+                returnString.append(String(hours) + " hours")
             }
         }
         if minutes > 0 {

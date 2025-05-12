@@ -56,7 +56,7 @@ struct HabitDetailsView: View {
                     .italic()
             }
             else {
-                Text("You have \(habit.TimeUntil()) until your habit deadline!")
+                Text("You have \(habit.TimeUntil()) until your next habit deadline!")
                     .padding()
                     .foregroundStyle(.purple)
                     .font(.callout)
