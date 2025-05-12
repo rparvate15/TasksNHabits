@@ -61,7 +61,18 @@ public struct Habit: Identifiable, Codable {
         let nextMonth = calendar.date(byAdding: .month, value: 1, to: calendar.startOfDay(for: now))!
             .startOfMonth(using: calendar)
         
-        let nextYear = calendar.date(byAdding: .year, value: 1, to: calendar.startOfDay(for: now))!
+        
+        let currentYear = calendar.component(.year, from: now)
+        var yearComponent = DateComponents()
+        yearComponent.year = currentYear + 1
+        yearComponent.month = 1
+        yearComponent.day = 1
+        yearComponent.hour = 0
+        yearComponent.minute = 0
+        yearComponent.second = 0
+        
+        
+        let nextYear = calendar.date(from: yearComponent)!
         
         return (
             day: nextDay.timeIntervalSinceNow,
