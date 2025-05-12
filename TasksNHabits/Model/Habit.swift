@@ -141,16 +141,16 @@ public struct Habit: Identifiable, Codable {
         
         if days > 0 {
             if days == 1 && (hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(days) + "day, ")
+                returnString.append(String(days) + " day, ")
             }
             else if days == 1 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(days) + "day")
+                returnString.append(String(days) + " day")
             }
             else if days > 1 && (hours != 0 || minutes != 0 || seconds != 0) {
-                returnString.append(String(days) + "days, ")
+                returnString.append(String(days) + " days, ")
             }
             else if days > 1 && hours == 0 && minutes == 0 && seconds == 0 {
-                returnString.append(String(days) + "days")
+                returnString.append(String(days) + " days")
             }
         }
         if hours > 0 {
