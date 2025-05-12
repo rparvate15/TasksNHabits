@@ -12,10 +12,17 @@ struct HabitListView: View {
     
     var body: some View {
         List {
-            ForEach(habitList.habits, id: \.id) { eachHabit in
-                NavigationLink(destination: HabitDetailsView(habit: eachHabit)) {
+            ForEach(habitList.habits, id: \.id) { habit in
+                NavigationLink(destination: HabitDetailsView(habit: habit)) {
                     HStack {
-                        Text(eachHabit.name)
+                        Text(habit.name)
+                    }
+                }
+                .swipeActions {
+                    Button(role: .destructive) {
+                        habitList.deleteHabit(id: habit.id)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
                     }
                 }
             }
