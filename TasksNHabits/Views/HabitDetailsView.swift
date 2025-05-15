@@ -93,6 +93,7 @@ struct HabitDetailsView: View {
                     .italic()
                     .multilineTextAlignment(.center)
             }
+            //TODO: How to update this text each second?
             
             
             Spacer()
