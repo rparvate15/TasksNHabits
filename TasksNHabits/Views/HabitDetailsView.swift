@@ -43,11 +43,33 @@ struct HabitDetailsView: View {
                 Text("Current Amount : \(habit.currentAmount)")
                     .font(.title3)
                     .foregroundStyle(.purple)
-                    .opacity(0.8)
+                    .opacity(habit.currentAmount > 0 ? 1 : 0.7)
             }
+            .padding(.bottom, 20)
+            
+            
+            VStack(spacing: 8) {
+                Button {
+                    // Add one to habit current amount
+                } label: {
+                    Image(systemName: "chevron.up")
+                }
+                .disabled(habit.currentAmount >= habit.totalAmount)
+                .font(.largeTitle)
+                
+                Button {
+                    // Subtract one from habit current amount
+                } label: {
+                    Image(systemName: "chevron.down")
+                }
+                .disabled(habit.currentAmount <= 0)
+                .font(.largeTitle)
+            }
+            .buttonStyle(.bordered)
+            .tint(.purple)
             
             //TODO: Add Plus/Minus buttons
-            Spacer()
+            .padding(.bottom, 50)
             
             if habit.currentAmount == habit.totalAmount {
                 Text("Congratulations! You have completed your habit!")
@@ -72,5 +94,5 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 1, currentAmount: 0))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 0))
 }
