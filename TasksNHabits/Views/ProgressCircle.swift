@@ -35,10 +35,7 @@ struct ProgressCircle: View {
                 .foregroundStyle(.purple)
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut(duration: 0.3), value: habit.currentAmount)
-        }
-
-        //TODO: Add a checkmark inside a full complete circle
-        
+        }   
     }
 }
 

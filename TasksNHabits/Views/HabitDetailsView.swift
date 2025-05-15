@@ -102,6 +102,6 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 2))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 3))
         .environmentObject(HabitList())
 }
