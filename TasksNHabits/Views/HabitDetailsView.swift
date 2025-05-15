@@ -71,35 +71,11 @@ struct HabitDetailsView: View {
             .buttonStyle(.bordered)
             .tint(.purple)
             
-//            ZStack {
-//                Circle()
-//                    .stroke(style: StrokeStyle (
-//                                lineWidth: 15,
-//                                lineCap: .round,
-//                                lineJoin: .round
-//                            )
-//                    )
-//                    .foregroundStyle(.gray)
-//                    .opacity(0.2)
-//                    .frame(width: 80, height: 80)
-//                
-//                Circle()
-//                    .trim(from: 0, to: CGFloat(habit.currentAmount) / CGFloat(habit.totalAmount))
-//                    .stroke(style: StrokeStyle (
-//                                lineWidth: 15,
-//                                lineCap: .round,
-//                                lineJoin: .round
-//                            )
-//                    )
-//                    .foregroundStyle(.purple)
-//                    .frame(width: 80, height: 80)
-//                    .opacity(0.9)
-//                    .rotationEffect(.degrees(-90))
-//                    .animation(.easeInOut(duration: 0.3), value: habit.currentAmount)
-//            }
             ProgressCircle(habit: habit, lineWidth: 15)
                 .frame(width: 80, height: 80)
-                .padding(.vertical, 25)
+                .padding(.top, 25)
+            
+            Spacer()
             
             if habit.currentAmount == habit.totalAmount {
                 Text("Congratulations!\nYou have completed your habit!")
@@ -110,7 +86,6 @@ struct HabitDetailsView: View {
             }
             else {
                 Text("You have \(habit.TimeUntil()) until your next habit deadline!")
-                    .padding()
                     .foregroundStyle(.purple)
                     .font(.callout)
                     .bold()
