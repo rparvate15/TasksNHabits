@@ -42,7 +42,7 @@ struct AddHabitView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundStyle(.purple)
             
-            TextField("Description (Optional)", text: $description, axis: .vertical)
+            TextField("Description (Optional)", text: $description)
                 .padding(.horizontal)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundStyle(.purple)

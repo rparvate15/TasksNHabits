@@ -46,9 +46,12 @@ struct HabitListView: View {
                             ProgressCircle(habit: habit, lineWidth: 2)
                                 .fixedSize()
                             
+
+                            
                             Text("\(habit.frequency)")
                                 .font(.callout)
                                 .foregroundStyle(.gray)
+                                .fixedSize()
                             
                         }
                 }
