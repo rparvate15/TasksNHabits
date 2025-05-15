@@ -43,31 +43,8 @@ struct HabitListView: View {
                             Text("\(habit.currentAmount) / \(habit.totalAmount)")
                                 .foregroundStyle(.purple)
                             
-                            ZStack {
-                                Circle()
-                                    .stroke(style: StrokeStyle (
-                                        lineWidth: 2,
-                                        lineCap: .round,
-                                        lineJoin: .round
-                                        )
-                                    )
-                                    .foregroundStyle(.gray)
-                                    .opacity(0.2)
-                                    .fixedSize()
-                                
-                                Circle()
-                                    .trim(from: 0, to: CGFloat(habit.currentAmount) / CGFloat(habit.totalAmount))
-                                    .stroke(stroke(style: StrokeStyle (
-                                        lineWidth: 2,
-                                        lineCap: .round,
-                                        lineJoin: .round
-                                    )
-                            ))
-                                    .foregroundStyle(.purple)
-                                    .fixedSize()
-                                    .rotationEffect(.degrees(-90))
-                                    .animation(.easeInOut(.duration(0.3)), value: habit.currentAmount)
-                            }
+                            ProgressCircle(habit: habit, lineWidth: 2)
+                                .fixedSize()
                             
                             Text("\(habit.frequency)")
                                 .font(.callout)
