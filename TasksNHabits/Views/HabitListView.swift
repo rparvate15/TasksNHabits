@@ -55,6 +55,16 @@ struct HabitListView: View {
                             
                         }
                 }
+                .contextMenu {
+                    Button(role: .destructive) {
+                        habitList.deleteHabit(id: habit.id)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                } preview: {
+                    HabitDetailsPreview(habit: habit)
+                        .environmentObject(habitList)
+                }
                 .swipeActions {
                     Button(role: .destructive) {
                         habitList.deleteHabit(id: habit.id)
