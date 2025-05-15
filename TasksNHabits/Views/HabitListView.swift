@@ -13,7 +13,7 @@ struct HabitListView: View {
     var body: some View {
         List {
             ForEach(habitList.habits, id: \.id) { habit in
-                NavigationLink(destination: HabitDetailsView(habit: habit)) {
+                NavigationLink(destination: HabitDetailsView(habit: habit).environmentObject(habitList)) {
                         
                         HStack {
                             Text(habit.name)

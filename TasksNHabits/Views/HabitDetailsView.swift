@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HabitDetailsView: View {
     var habit: Habit
+    @EnvironmentObject var habitList: HabitList
     @Environment(\.dismiss) var dismiss
     @State private var dueDate: Date = Date()
     
@@ -51,6 +52,7 @@ struct HabitDetailsView: View {
             VStack(spacing: 8) {
                 Button {
                     // Add one to habit current amount
+                    habitList.incrementHabit(id: habit.id)
                 } label: {
                     Image(systemName: "chevron.up")
                 }
@@ -59,6 +61,7 @@ struct HabitDetailsView: View {
                 
                 Button {
                     // Subtract one from habit current amount
+                    habitList.decrementHabit(id: habit.id)
                 } label: {
                     Image(systemName: "chevron.down")
                 }
@@ -72,10 +75,11 @@ struct HabitDetailsView: View {
             .padding(.bottom, 50)
             
             if habit.currentAmount == habit.totalAmount {
-                Text("Congratulations! You have completed your habit!")
+                Text("Congratulations!\nYou have completed your habit!")
                     .font(.headline)
                     .foregroundStyle(.purple)
                     .italic()
+                    .multilineTextAlignment(.center)
             }
             else {
                 Text("You have \(habit.TimeUntil()) until your next habit deadline!")
@@ -94,5 +98,6 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 0))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 3))
+        .environmentObject(HabitList())
 }
