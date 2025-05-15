@@ -37,6 +37,8 @@ struct ProgressCircle: View {
                 .animation(.easeInOut(duration: 0.3), value: habit.currentAmount)
         }
 
+        //TODO: Add a checkmark inside a full complete circle
+        
     }
 }
 
