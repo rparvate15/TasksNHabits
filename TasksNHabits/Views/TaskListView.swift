@@ -69,6 +69,7 @@ struct TaskListView: View {
                     }
                 }
             }
+            .transition(.opacity.combined(with: .move(edge: .leading)))
         }
         .confirmationDialog(
             "Delete Task",
@@ -76,7 +77,9 @@ struct TaskListView: View {
             actions: {
                 Button("Delete", role: .destructive) {
                     if let task = taskToDelete {
-                        taskList.deleteTask(id: task.id)
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            taskList.deleteTask(id: task.id)
+                        }
                         taskToDelete = nil
                     }
                 }

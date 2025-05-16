@@ -56,6 +56,7 @@ struct HabitListView: View {
                             
                         }
                 }
+                .transition(.opacity.combined(with: .move(edge: .trailing)))
                 .swipeActions {
                     Button(role: .destructive) {
                         habitToDelete = habit
@@ -78,7 +79,9 @@ struct HabitListView: View {
             actions: {
                 Button("Delete", role: .destructive) {
                     if let habit = habitToDelete {
-                        habitList.deleteHabit(id: habit.id)
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            habitList.deleteHabit(id: habit.id)
+                        }
                         habitToDelete = nil
                     }
                 }
