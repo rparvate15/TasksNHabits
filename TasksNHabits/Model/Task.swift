@@ -34,7 +34,7 @@ public struct Task: Identifiable, Codable {
     init (name: String, description: String, completeDate: Date) {
         self.name = name
         self.description = description
-        self.completeDate = completeDate
+        self.completeDate = (completeDate)
     }
     
     init (name: String, completeDate: Date) {
@@ -43,12 +43,12 @@ public struct Task: Identifiable, Codable {
         self.completeDate = completeDate
     }
     
-    public func timeUntil() -> String {
+    public func timeUntil(currentDate: Date = Date()) -> String {
         var returnString = ""
         var hours = 0
         var minutes = 0
         var seconds = 0
-        var secondsUntil: Double = completeDate.timeIntervalSinceNow
+        var secondsUntil: Double = completeDate.timeIntervalSince(currentDate)
         
         hours = Int(secondsUntil) / 3600
         secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 3600)

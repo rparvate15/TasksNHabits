@@ -12,6 +12,10 @@ struct HabitDetailsView: View {
     @EnvironmentObject var habitList: HabitList
     @Environment(\.dismiss) var dismiss
     @State private var dueDate: Date = Date()
+    @State private var currentDate = Date()
+    
+    private let timer = Timer.publish(every: 1, on: .main, in: .common)
+        .autoconnect()
     
     var body: some View {
         VStack {
@@ -85,7 +89,10 @@ struct HabitDetailsView: View {
                     .multilineTextAlignment(.center)
             }
             else {
-                Text("You have \(habit.TimeUntil()) until your next habit deadline!")
+                Text("You have \(habit.TimeUntil(currentDate: currentDate)) until your next habit deadline!")
+                    .onReceive(timer) { _ in
+                        currentDate = Date()
+                    }
                     .padding(.horizontal)
                     .foregroundStyle(.purple)
                     .font(.callout)
@@ -93,7 +100,6 @@ struct HabitDetailsView: View {
                     .italic()
                     .multilineTextAlignment(.center)
             }
-            //TODO: How to update this text each second?
             
             
             Spacer()
@@ -102,6 +108,6 @@ struct HabitDetailsView: View {
 }
 
 #Preview {
-    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 3))
+    HabitDetailsView(habit: Habit(name: "Name of Habit", description: "Description", frequency: .yearly, totalAmount: 3, currentAmount: 2))
         .environmentObject(HabitList())
 }

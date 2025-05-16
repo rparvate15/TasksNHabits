@@ -11,6 +11,9 @@ struct TaskDetailsView: View {
     var task: Task
     @Environment(\.dismiss) var dismiss
     @State private var dueDate: Date = Date()
+    @State private var currentDate: Date = Date()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common)
+        .autoconnect()
     
     var body: some View {
         VStack {
@@ -52,13 +55,19 @@ struct TaskDetailsView: View {
             
             if (task.completeDate.timeIntervalSinceNow > 0)
             {
-                Text("Time Until Due: " + String(task.timeUntil()))
+                Text("Time Until Due: " + String(task.timeUntil(currentDate: currentDate)))
+                    .onReceive(timer) { _ in
+                        currentDate = Date()
+                    }
                     .multilineTextAlignment(TextAlignment.center)
                     .font(.headline)
                     .foregroundStyle(.secondary)
             }
             else {
-                Text("Time Since Due: " + String(task.timeUntil()))
+                Text("Time Since Due: " + String(task.timeUntil(currentDate: currentDate)))
+                    .onReceive(timer) { _ in
+                        currentDate = Date()
+                    }
                     .multilineTextAlignment(TextAlignment.center)
                     .font(.headline)
                     .foregroundStyle(.secondary)

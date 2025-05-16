@@ -50,9 +50,9 @@ public struct Habit: Identifiable, Codable {
         return name + " " + String(totalAmount) + " " + times + " a " + frequencyString
     }
     
-    private func TimeIntervalCalculator() -> (day: TimeInterval, week: TimeInterval, month: TimeInterval, year: TimeInterval) {
+    private func TimeIntervalCalculator(currentDate: Date = Date()) -> (day: TimeInterval, week: TimeInterval, month: TimeInterval, year: TimeInterval) {
         let calendar = Calendar.current
-        let now = Date()
+        let now = currentDate
         
         let nextDay = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now))!
         
@@ -82,7 +82,7 @@ public struct Habit: Identifiable, Codable {
         )
     }
     
-    private func TimeUntilDay() -> String {
+    private func TimeUntilDay(currentDate: Date) -> String {
         var returnString = ""
         var hours = 0
         var minutes = 0
@@ -134,7 +134,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    private func TimeUntilWeek() -> String {
+    private func TimeUntilWeek(currentDate: Date) -> String {
         var returnString = ""
         var days = 0
         var hours = 0
@@ -202,7 +202,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    private func TimeUntilMonth() -> String {
+    private func TimeUntilMonth(currentDate: Date) -> String {
         var returnString = ""
         var weeks = 0
         var days = 0
@@ -287,7 +287,7 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    private func TimeUntilYear() -> String {
+    private func TimeUntilYear(currentDate: Date) -> String {
         var returnString = ""
         var weeks = 0
         var days = 0
@@ -372,16 +372,16 @@ public struct Habit: Identifiable, Codable {
         return returnString
     }
     
-    public func TimeUntil() -> String {
+    public func TimeUntil(currentDate: Date = Date()) -> String {
         switch frequency {
         case .daily:
-            return TimeUntilDay()
+            return TimeUntilDay(currentDate: currentDate)
         case .weekly:
-            return TimeUntilWeek()
+            return TimeUntilWeek(currentDate: currentDate)
         case .monthly:
-            return TimeUntilMonth()
+            return TimeUntilMonth(currentDate: currentDate)
         case .yearly:
-            return TimeUntilYear()
+            return TimeUntilYear(currentDate: currentDate)
         }
     }
     
