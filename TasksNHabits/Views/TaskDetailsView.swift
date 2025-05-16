@@ -68,5 +68,5 @@ struct TaskDetailsView: View {
 }
 
 #Preview {
-    TaskDetailsView(task: Task.init(name: "Test Task", description: "", completeDate: Date(timeIntervalSinceNow: 3601)))
+    TaskDetailsView(task: Task.init(name: "Test Task", description: "", completeDate: Date(timeIntervalSinceNow: 3541)))
 }

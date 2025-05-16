@@ -81,7 +81,7 @@ public struct Task: Identifiable, Codable {
                 returnString.append(String(minutes) + " minutes, ")
             }
             else if minutes > 1 && seconds == 0 {
-                returnString.append(String(minutes) + "minutes")
+                returnString.append(String(minutes) + " minutes")
             }
         }
         if seconds > 1 {
