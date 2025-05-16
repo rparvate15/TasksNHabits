@@ -43,33 +43,58 @@ public struct Task: Identifiable, Codable {
         self.completeDate = completeDate
     }
     
-    func timeUntil() -> String {
+    public func timeUntil() -> String {
+        var returnString = ""
+        var hours = 0
+        var minutes = 0
+        var seconds = 0
         var secondsUntil: Double = completeDate.timeIntervalSinceNow
-        var stringToAdd: String = ""
-        var stringReturn: String = ""
-        if (secondsUntil < 0) {
-            secondsUntil *= -1
+        
+        hours = Int(secondsUntil) / 3600
+        secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 3600)
+        minutes = Int(secondsUntil) / 60
+        secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 60)
+        seconds = Int(secondsUntil)
+        
+        if hours > 0 {
+            if hours == 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hour, ")
+            }
+            else if hours == 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hour")
+            }
+            else if hours > 1 && (minutes != 0 || seconds != 0) {
+                returnString.append(String(hours) + " hours, ")
+            }
+            else if hours > 1 && minutes == 0 && seconds == 0 {
+                returnString.append(String(hours) + " hours")
+            }
         }
-        if secondsUntil >= 86400 {
-            stringToAdd = String(format: "%.0f", (secondsUntil/86400).rounded())
-            stringReturn.append(stringToAdd + " days, ")
-            secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 86400)
+        if minutes > 0 {
+            if minutes == 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minute, ")
+            }
+            else if minutes == 1 && seconds == 0 {
+                returnString.append(String(minutes) + " minute")
+            }
+            else if minutes > 1 && seconds != 0 {
+                returnString.append(String(minutes) + " minutes, ")
+            }
+            else if minutes > 1 && seconds == 0 {
+                returnString.append(String(minutes) + "minutes")
+            }
         }
-        if secondsUntil >= 3600 {
-            stringToAdd = String(format: "%.0f", (secondsUntil/3600).rounded())
-            stringReturn.append(stringToAdd + " hours, ")
-            secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 3600)
+        if seconds > 1 {
+            returnString.append(String(seconds) + " seconds")
         }
-        if secondsUntil >= 60 {
-            stringToAdd = String(format: "%.0f", (secondsUntil/60).rounded())
-            stringReturn.append(stringToAdd + " minutes")
-            secondsUntil = secondsUntil.truncatingRemainder(dividingBy: 60)
+        else if seconds == 1{
+            returnString.append(String(seconds) + " second")
         }
-        if stringReturn == "" {
-            return "Less than a minute!"
-        }
-        return stringReturn
+        
+    
+        return returnString
     }
+    
     
     func dateToString() -> String {
         return completeDate.formatted(date: .long, time: .omitted)
