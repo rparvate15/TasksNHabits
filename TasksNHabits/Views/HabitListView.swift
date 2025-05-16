@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HabitListView: View {
     @EnvironmentObject var habitList: HabitList
+    @State private var habitToDelete: Habit?
     
     var body: some View {
         List {
@@ -55,25 +56,40 @@ struct HabitListView: View {
                             
                         }
                 }
-                .contextMenu {
+                .swipeActions {
                     Button(role: .destructive) {
-                        habitList.deleteHabit(id: habit.id)
+                        habitToDelete = habit
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }
-                } preview: {
-                    HabitDetailsPreview(habit: habit)
-                        .environmentObject(habitList)
                 }
-                .swipeActions {
+                .contextMenu {
                     Button(role: .destructive) {
-                        habitList.deleteHabit(id: habit.id)
+                        habitToDelete = habit
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }
                 }
             }
         }
+        .confirmationDialog (
+            "Delete Habit",
+            isPresented: .constant(habitToDelete != nil),
+            actions: {
+                Button("Delete", role: .destructive) {
+                    if let habit = habitToDelete {
+                        habitList.deleteHabit(id: habit.id)
+                        habitToDelete = nil
+                    }
+                }
+                Button("Cancel", role: .cancel) {
+                    habitToDelete = nil
+                }
+            },
+            message: {
+                Text("Are you sure you want to delete \(habitToDelete?.name ?? "this habit?")?")
+            }
+        )
         .listStyle(.plain)
     }
 }

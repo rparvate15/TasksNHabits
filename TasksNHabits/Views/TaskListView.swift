@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TaskListView: View {
     @EnvironmentObject var taskList: TaskList
+    @State private var taskToDelete: Task?
     
     var body: some View {
         List {
@@ -54,7 +55,14 @@ struct TaskListView: View {
                     }
                     .swipeActions {
                         Button(role: .destructive) {
-                            taskList.deleteTask(id: task.id)
+                            taskToDelete = task
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                    .contextMenu() {
+                        Button(role: .destructive) {
+                            taskToDelete = task
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
@@ -62,6 +70,24 @@ struct TaskListView: View {
                 }
             }
         }
+        .confirmationDialog(
+            "Delete Task",
+            isPresented: .constant(taskToDelete != nil),
+            actions: {
+                Button("Delete", role: .destructive) {
+                    if let task = taskToDelete {
+                        taskList.deleteTask(id: task.id)
+                        taskToDelete = nil
+                    }
+                }
+                Button("Cancel", role: .cancel) {
+                    taskToDelete = nil
+                }
+            },
+            message: {
+                Text("Are you sure you want to delete \(taskToDelete?.name ?? "this task?")")
+            }
+        )
         .listStyle(.plain)
     }
 }
