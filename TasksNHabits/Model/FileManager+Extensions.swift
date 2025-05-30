@@ -8,16 +8,11 @@
 import Foundation
 
 extension FileManager {
-    static var documentsDirectory: URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
     static var sharedContainer: URL {
-           FileManager.default.containerURL(
-               forSecurityApplicationGroupIdentifier: "group.com.yourdomain.TasksNHabits"
-           )!
-       }
+        FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: "group.com.rudraparvate.TasksNHabits"
+        )!
+    }
 }
 
 extension Date {
