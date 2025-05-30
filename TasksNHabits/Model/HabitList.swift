@@ -44,11 +44,13 @@ class HabitList: ObservableObject {
     public func addHabit(habit: Habit) {
         objectWillChange.send()
         habits.append(habit)
+        NotificationManager.shared.scheduleHabitResetNotification(for: habit)
     }
     
     func deleteHabit(id: UUID) {
         objectWillChange.send()
         habits.removeAll { $0.id == id }
+        NotificationManager.shared.cancelNotification(for: id)
     }
     
     func incrementHabit(id: UUID) {
@@ -68,10 +70,13 @@ class HabitList: ObservableObject {
     }
     
     public func resetHabitsIfNeeded() {
-            let now = Date()
-            for index in habits.indices {
-                habits[index].resetIfNeeded(currentDate: now)
+        let now = Date()
+        for index in habits.indices {
+            if habits[index].resetIfNeeded(currentDate: now) {
+                // Habit was reset - schedule next notification
+                NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])
             }
-            saveHabits() // Persist changes after reset
         }
+        saveHabits()
+    }
 }

@@ -12,6 +12,10 @@ struct TasksNHabitsApp: App {
     @StateObject var taskList = TaskList()
     @StateObject var habitList = HabitList()
     
+    init() {
+        NotificationManager.shared.requestPermission()
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {

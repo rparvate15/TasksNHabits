@@ -401,19 +401,33 @@ public struct Habit: Identifiable, Codable {
         }
     }
     
-    public mutating func resetIfNeeded(currentDate: Date = Date()) {
+    public mutating func resetIfNeeded(currentDate: Date = Date()) -> Bool {
         let currentIntervalStart = startOfCurrentInterval(for: currentDate)
         
-        // For new habits without a lastIntervalStart
         guard let lastStart = lastIntervalStart else {
             lastIntervalStart = currentIntervalStart
-            return
+            return false
         }
         
-        // Check if we've crossed into a new interval
         if currentIntervalStart > lastStart {
             currentAmount = 0
             lastIntervalStart = currentIntervalStart
+            return true
+        }
+        return false
+    }
+    
+    public func nextResetDate() -> Date {
+        let timeIntervals = TimeIntervalCalculator()
+        switch frequency {
+        case .daily:
+            return Date().addingTimeInterval(timeIntervals.day)
+        case .weekly:
+            return Date().addingTimeInterval(timeIntervals.week)
+        case .monthly:
+            return Date().addingTimeInterval(timeIntervals.month)
+        case .yearly:
+            return Date().addingTimeInterval(timeIntervals.year)
         }
     }
     

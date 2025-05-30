@@ -50,6 +50,7 @@ struct AddTaskView: View {
             Button(action: {
                 let newTask = Task(name: name, description: description, completeDate: dueDate)
                 taskList.addTask(task: newTask)
+                NotificationManager.shared.scheduleNotification(for: newTask)
                 presentationMode.wrappedValue.dismiss()
                 
             }) {
