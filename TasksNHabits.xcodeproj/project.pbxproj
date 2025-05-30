@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		17B037242DEA2F0700BAD1C7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B037232DEA2F0700BAD1C7 /* WidgetKit.framework */; };
+		17B037262DEA2F0700BAD1C7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B037252DEA2F0700BAD1C7 /* SwiftUI.framework */; };
+		17B0372D2DEA2F0900BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 17B037212DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		17B0372B2DEA2F0900BAD1C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17E88C9D2D95977800C47045 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17B037202DEA2F0700BAD1C7;
+			remoteInfo = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension";
+		};
 		17E88CB62D95977900C47045 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 17E88C9D2D95977800C47045 /* Project object */;
@@ -23,13 +36,49 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		17B037322DEA2F0900BAD1C7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				17B0372D2DEA2F0900BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		17B037212DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		17B037232DEA2F0700BAD1C7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		17B037252DEA2F0700BAD1C7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		17E88CA52D95977800C47045 /* TasksNHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TasksNHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E88CB52D95977900C47045 /* TasksNHabitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TasksNHabitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E88CBF2D95977900C47045 /* TasksNHabitsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TasksNHabitsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		17B0372E2DEA2F0900BAD1C7 /* Exceptions for "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget" folder in "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 17B037202DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		17B037272DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				17B0372E2DEA2F0900BAD1C7 /* Exceptions for "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget" folder in "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension" target */,
+			);
+			name = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget";
+			path = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 / Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget";
+			sourceTree = "<group>";
+		};
 		17E88CA72D95977800C47045 /* TasksNHabits */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TasksNHabits;
@@ -48,6 +97,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17B0371E2DEA2F0700BAD1C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17B037262DEA2F0700BAD1C7 /* SwiftUI.framework in Frameworks */,
+				17B037242DEA2F0700BAD1C7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17E88CA22D95977800C47045 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,12 +130,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17B037222DEA2F0700BAD1C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17B037232DEA2F0700BAD1C7 /* WidgetKit.framework */,
+				17B037252DEA2F0700BAD1C7 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		17E88C9C2D95977800C47045 = {
 			isa = PBXGroup;
 			children = (
 				17E88CA72D95977800C47045 /* TasksNHabits */,
 				17E88CB82D95977900C47045 /* TasksNHabitsTests */,
 				17E88CC22D95977900C47045 /* TasksNHabitsUITests */,
+				17B037272DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget */,
+				17B037222DEA2F0700BAD1C7 /* Frameworks */,
 				17E88CA62D95977800C47045 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +157,7 @@
 				17E88CA52D95977800C47045 /* TasksNHabits.app */,
 				17E88CB52D95977900C47045 /* TasksNHabitsTests.xctest */,
 				17E88CBF2D95977900C47045 /* TasksNHabitsUITests.xctest */,
+				17B037212DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +165,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		17B037202DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17B0372F2DEA2F0900BAD1C7 /* Build configuration list for PBXNativeTarget "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension" */;
+			buildPhases = (
+				17B0371D2DEA2F0700BAD1C7 /* Sources */,
+				17B0371E2DEA2F0700BAD1C7 /* Frameworks */,
+				17B0371F2DEA2F0700BAD1C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				17B037272DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget */,
+			);
+			name = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension";
+			productReference = 17B037212DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		17E88CA42D95977800C47045 /* TasksNHabits */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17E88CC92D95977900C47045 /* Build configuration list for PBXNativeTarget "TasksNHabits" */;
@@ -102,10 +194,12 @@
 				17E88CA12D95977800C47045 /* Sources */,
 				17E88CA22D95977800C47045 /* Frameworks */,
 				17E88CA32D95977800C47045 /* Resources */,
+				17B037322DEA2F0900BAD1C7 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				17B0372C2DEA2F0900BAD1C7 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				17E88CA72D95977800C47045 /* TasksNHabits */,
@@ -173,6 +267,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					17B037202DEA2F0700BAD1C7 = {
+						CreatedOnToolsVersion = 16.3;
+					};
 					17E88CA42D95977800C47045 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -203,11 +300,19 @@
 				17E88CA42D95977800C47045 /* TasksNHabits */,
 				17E88CB42D95977900C47045 /* TasksNHabitsTests */,
 				17E88CBE2D95977900C47045 /* TasksNHabitsUITests */,
+				17B037202DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		17B0371F2DEA2F0700BAD1C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17E88CA32D95977800C47045 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +337,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17B0371D2DEA2F0700BAD1C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17E88CA12D95977800C47045 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +368,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		17B0372C2DEA2F0900BAD1C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17B037202DEA2F0700BAD1C7 /* public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension */;
+			targetProxy = 17B0372B2DEA2F0900BAD1C7 /* PBXContainerItemProxy */;
+		};
 		17E88CB72D95977900C47045 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 17E88CA42D95977800C47045 /* TasksNHabits */;
@@ -269,6 +386,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		17B037302DEA2F0900BAD1C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.rudraparvate.TasksNHabits.public-func-resetHabitsIfNeeded-------------let-now---Date-----------for-index-in-habits-indices---------------if-habits-index--resetIfNeeded-currentDate--now-----------------------Habit-was-reset---schedule-next-notification-----------------NotificationManager-shared-scheduleHabitResetNotification-for--habits-index-----------------------------------saveHabits---------TasksNHabitsWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17B037312DEA2F0900BAD1C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.rudraparvate.TasksNHabits.public-func-resetHabitsIfNeeded-------------let-now---Date-----------for-index-in-habits-indices---------------if-habits-index--resetIfNeeded-currentDate--now-----------------------Habit-was-reset---schedule-next-notification-----------------NotificationManager-shared-scheduleHabitResetNotification-for--habits-index-----------------------------------saveHabits---------TasksNHabitsWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		17E88CC72D95977900C47045 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -536,6 +709,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17B0372F2DEA2F0900BAD1C7 /* Build configuration list for PBXNativeTarget "public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 // Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17B037302DEA2F0900BAD1C7 /* Debug */,
+				17B037312DEA2F0900BAD1C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17E88CA02D95977800C47045 /* Build configuration list for PBXProject "TasksNHabits" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
