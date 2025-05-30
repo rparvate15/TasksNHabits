@@ -14,6 +14,9 @@ struct ContentView: View {
     @State private var isAddingTask = false
     @State private var isAddingHabit = false
     
+    let timer = Timer.publish(every: 60, on: .main, in: .common)
+        .autoconnect()
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -110,6 +113,12 @@ struct ContentView: View {
                     
                 }
             }
+        }
+        .onAppear() {
+            habitList.resetHabitsIfNeeded()
+        }
+        .onReceive(timer) { _ in
+            habitList.resetHabitsIfNeeded()
         }
     }
 }

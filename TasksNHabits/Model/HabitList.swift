@@ -38,6 +38,7 @@ class HabitList: ObservableObject {
         } catch {
             print("Error loading habits: \(error)")
         }
+        resetHabitsIfNeeded()
     }
     
     public func addHabit(habit: Habit) {
@@ -65,4 +66,12 @@ class HabitList: ObservableObject {
             habits[index] = habit
         }
     }
+    
+    public func resetHabitsIfNeeded() {
+            let now = Date()
+            for index in habits.indices {
+                habits[index].resetIfNeeded(currentDate: now)
+            }
+            saveHabits() // Persist changes after reset
+        }
 }

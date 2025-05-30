@@ -65,8 +65,6 @@ struct AddHabitView: View {
             .padding(.horizontal)
             .padding(.bottom)
             
-            // TODO: Make option for the M/W/F rather than over time period
-            
             Picker(selection: $frequency, label: Text("Frequency")) {
                 Text("Daily").tag(Frequency.daily)
                 Text("Weekly").tag(Frequency.weekly)
