@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>TasksNHabitsWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>public func resetHabitsIfNeeded() {         let now = Date()         for index in habits.indices {             if habits[index].resetIfNeeded(currentDate: now) {                 / Habit was reset - schedule next notification                 NotificationManager.shared.scheduleHabitResetNotification(for: habits[index])             }         }         saveHabits()     } TasksNHabitsWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>

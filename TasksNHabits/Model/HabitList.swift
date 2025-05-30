@@ -22,14 +22,14 @@ class HabitList: ObservableObject {
     private func saveHabits() {
         do {
             let data = try JSONEncoder().encode(habits)
-            try data.write(to: FileManager.documentsDirectory.appendingPathComponent("habits.json"))
+            try data.write(to: FileManager.sharedContainer.appendingPathComponent("habits.json"))
         } catch {
             print("Error saving habits: \(error)")
         }
     }
     
     private func loadHabits() {
-        let url = FileManager.documentsDirectory.appendingPathComponent("habits.json")
+        let url = FileManager.sharedContainer.appendingPathComponent("habits.json")
         guard FileManager.default.fileExists(atPath: url.path) else { return }
         
         do {

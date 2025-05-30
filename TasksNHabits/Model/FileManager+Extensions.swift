@@ -12,6 +12,12 @@ extension FileManager {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
+    
+    static var sharedContainer: URL {
+           FileManager.default.containerURL(
+               forSecurityApplicationGroupIdentifier: "group.com.yourdomain.TasksNHabits"
+           )!
+       }
 }
 
 extension Date {

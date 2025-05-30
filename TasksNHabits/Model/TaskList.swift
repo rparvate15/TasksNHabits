@@ -27,14 +27,14 @@ class TaskList: ObservableObject {
     private func saveTasks() {
         do {
             let data = try JSONEncoder().encode(tasks)
-            try data.write(to: FileManager.documentsDirectory.appendingPathComponent("tasks.json"))
+            try data.write(to: FileManager.sharedContainer.appendingPathComponent("tasks.json"))
         } catch {
             print("Error saving tasks: \(error)")
         }
     }
     
     private func loadTasks() {
-        let url = FileManager.documentsDirectory.appendingPathComponent("tasks.json")
+        let url = FileManager.sharedContainer.appendingPathComponent("tasks.json")
         guard FileManager.default.fileExists(atPath: url.path) else { return }
         
         do {
