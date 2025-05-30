@@ -16,6 +16,7 @@ public struct Habit: Identifiable, Codable {
     var frequency: Frequency
     var totalAmount: Int
     var currentAmount: Int
+    var lastIntervalStart: Date?
     
     init(id: UUID = UUID(), name: String, description: String, frequency: Frequency, totalAmount: Int, currentAmount: Int) {
         self.id = id
@@ -24,6 +25,7 @@ public struct Habit: Identifiable, Codable {
         self.frequency = frequency
         self.totalAmount = totalAmount
         self.currentAmount = currentAmount
+        self.lastIntervalStart = startOfCurrentInterval(for: Date())
     }
 
     public func HabitPreviewString() -> String {
@@ -382,6 +384,36 @@ public struct Habit: Identifiable, Codable {
             return TimeUntilMonth(currentDate: currentDate)
         case .yearly:
             return TimeUntilYear(currentDate: currentDate)
+        }
+    }
+    
+    private func startOfCurrentInterval(for date: Date) -> Date {
+        let calendar = Calendar.current
+        switch frequency {
+        case .daily:
+            return calendar.startOfDay(for: date)
+        case .weekly:
+            return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
+        case .monthly:
+            return calendar.date(from: calendar.dateComponents([.year, .month], from: date))!
+        case .yearly:
+            return calendar.date(from: calendar.dateComponents([.year], from: date))!
+        }
+    }
+    
+    public mutating func resetIfNeeded(currentDate: Date = Date()) {
+        let currentIntervalStart = startOfCurrentInterval(for: currentDate)
+        
+        // For new habits without a lastIntervalStart
+        guard let lastStart = lastIntervalStart else {
+            lastIntervalStart = currentIntervalStart
+            return
+        }
+        
+        // Check if we've crossed into a new interval
+        if currentIntervalStart > lastStart {
+            currentAmount = 0
+            lastIntervalStart = currentIntervalStart
         }
     }
     
